@@ -1,6 +1,6 @@
 <?php 
   class Auth extends Controller {
-    // Handle user login
+    // To handle user login
     public function index() {
       $data["title"]          = "Login";
       $data["controller"]     = "auth/index";
@@ -23,6 +23,7 @@
           if(password_verify($_POST["password"], $student["password"])) {
             // Set session for successful login
             $_SESSION["login"] = "true";
+            $_SESSION["user_id"] = $student["id"];
             // Redirect to home page
             echo "<script>alert('Login success 😊!')</script>";
             echo "<script>document.location.href='" . BASEURL . "/home'</script>";
@@ -35,7 +36,7 @@
       }
     }
 
-    // Handle user registration
+    // To handle user registration
     public function registration() {
       $data["title"] = "Registration";
 
@@ -75,7 +76,7 @@
       }
     }
 
-    // Handle admin login
+    // To handle admin login
     public function admin() {
       $data["title"]         = "Login Admin";
       $data["controller"]    = "auth/admin";
@@ -110,7 +111,7 @@
       }
     }
 
-    // Display registration link
+    // To display registration link
     public function register() {
       if(isset($_SESSION["register"]) && $_SESSION["register"] === "true") {
         echo '
@@ -120,7 +121,7 @@
       }
     }
     
-    // Display call-to-action for admin login
+    // To display CTA for admin login
     public function CTA() {
       if(isset($_SESSION["cta"]) && $_SESSION["cta"] === "true") {
         echo '

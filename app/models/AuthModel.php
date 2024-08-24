@@ -7,14 +7,14 @@
       $this->db = new Database;
     }
 
-    // Authenticate based on table, identifier, and data
+    // To authenticate based on table, identifier, and data
     public function authentication($table, $identifier, $data) {
       $this->db->query("SELECT COUNT(*) as count FROM {$table} WHERE {$identifier}=:data");
       $this->db->bind(":data", $data);
       return $this->db->single()["count"];
     }
 
-    // Register new user
+    // To register new user
     public function registration($data) {
       $this->db->query("INSERT INTO customer VALUES (
         '', :username, :password, :email, :birth, :gender, :address, :city, :phone_number
@@ -33,7 +33,7 @@
       return $this->db->rowCount();
     }
 
-    // Get table data by username
+    // To get table data by username
     public function getByUser($table, $username){
       $this->db->query("SELECT * FROM {$table} WHERE username=:username");
       $this->db->bind("username", $username);
