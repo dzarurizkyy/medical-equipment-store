@@ -14,7 +14,7 @@
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <!-- Home -->
         <li class="nav-item">
-          <a class="nav-link active fw-semibold text-light" href="#">Home</a>
+          <a class="nav-link active fw-semibold text-light" href="<?= BASEURL ?>">Home</a>
         </li>
         <!-- Status -->
         <li class="nav-item ">
@@ -22,13 +22,13 @@
         </li>
       </ul>
       <!-- Cart -->
-      <a class="navbar-text fw-semibold text-decoration-none text-light fs-4" href="#">
+      <a class="navbar-text fw-semibold text-decoration-none text-light fs-4" href="<?= BASEURL ?>/home/cart">
         <!-- Icon -->
         <i class="fa fa-shopping-cart position-relative">
           <!-- Badge -->
-          <?php if(Home::cart($_SESSION["user_id"]) !== 0) :?>
+          <?php if(Home::totalCart($_SESSION["user_id"]) !== 0) :?>
             <div class="badge rounded-pill bg-danger position-absolute top-0 start-100 translate-middle" style="font-size: 10px;">
-              <?= Home::cart($_SESSION["user_id"]) ?>
+              <?= Home::totalCart($_SESSION["user_id"]) ?>
             </div>
           <?php endif; ?>
         </i>

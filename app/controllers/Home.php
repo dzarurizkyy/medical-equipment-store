@@ -72,23 +72,30 @@
 
     // To handle order actions
     public function order($id) {
-      $stock = $this->model("HomeModel")->getStock($id);
+      $stock = $this->model("HomeModel")->getStock($id)["stock"];
+      $price = $this->model("HomeModel")->getStock($id)["price"];
 
       // Check if quantity is posted
-      if(isset($_POST["quantity"])) {
+      if(isset($_SESSION["user_id"]) && isset($_POST["quantity"])) {
         // Check if quantity is higher than available stock
         if($_POST["quantity"] > $stock) {
           echo "<script>alert('Quantity input higher than available stock product 😢!')</script>";
+          echo "<script>window.location.href='" . BASEURL ."/home'</script>";
         } else {
-          echo "<script>alert('Product successfully added to your shopping cart 😊')</script>";
+          if($this->model("HomeModel")->cart($_SESSION["user_id"], $id, $_POST["quantity"], $price) > 0) {
+            echo "<script>alert('Product successfully added to your shopping cart 😊')</script>";
+            echo "<script>window.location.href='" . BASEURL ."/home/cart'</script>";
+          } else {
+            echo "<script>alert('Product unsuccessfully added to your shopping cart 😊')</script>";
+            echo "<script>window.location.href='" . BASEURL ."/home'</script>";
+          }
         }
-        echo "<script>window.location.href='" . BASEURL . "/home'</script>";
       }
     }
 
     // To get cart count
-    public function cart($id) {
-      if($cart = $this->model("HomeModel")->getCart($id)) {
+    public function totalCart($id) {
+      if($cart = $this->model("HomeModel")->getTotalCart($id)) {
         return $cart;
       };
       
@@ -122,6 +129,49 @@
             </ul>
           </nav>';
       }
+    }
+
+    // To display cart details
+    public function cart($param = "", $value = 0) {
+      $data["title"]  = "Shopping Cart";
+      $data["orders"] = $this->model("HomeModel")->getCart($_SESSION["user_id"]); 
+      $data["total"]  = 0;
+      
+      if($param === "cancel") {
+        if($this->model("HomeModel")->deleteCart($value) > 0) {
+          echo "<script>alert('Product successfully remove from your shopping cart 😊!')</script>";
+          echo "<script>window.location.href='" . BASEURL ."/home/cart'</script>";
+        } else {
+          echo "<script>alert('Product unsuccessfully remove from your shopping cart 😢!')</script>";
+          echo "<script>window.location.href='" . BASEURL ."/home'</script>";
+        }
+      }
+
+      // Check if user is logged in before displaying page
+      if(isset($_SESSION["login"]) && $_SESSION["login"] === "true") {
+        $this->view("templates/header", $data);
+        $this->view("templates/navbar");
+        $this->view("home/cart", $data);
+        $this->view("templates/footer");
+      } else {
+        // Redirect to auth page if not logged in
+        header("Location: " . BASEURL . "/auth");
+        exit;
+      }
+    }
+
+    // To process checkout
+    public function checkout() {
+      // It updates order status to 'konfirmasi' and sets payment method.
+      if(isset($_SESSION["user_id"]) && isset($_POST["checkout"])) {
+        if($this->model("HomeModel")->checkout($_SESSION["user_id"], $_POST["checkout"]) > 0) {
+          echo "<script>alert('Thank you for your order 😊!')</script>";
+          echo "<script>window.location.href='" . BASEURL ."/home'</script>";
+        } else {
+          echo "<script>alert('Failed to process your order 😢!')</script>";
+          echo "<script>window.location.href='" . BASEURL ."/home/cart'</script>";
+        }
+      } 
     }
   };
 ?>

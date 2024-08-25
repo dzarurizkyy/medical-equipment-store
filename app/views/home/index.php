@@ -23,7 +23,7 @@
         <!-- Card -->
         <div class="card p-1" style="width: 30%; height: <?= (isset($data["product_id"]) && (int)$data["product_id"] === $product["id"]) ? '22rem' : '19rem' ?>">
           <!-- Image -->
-          <img src="<?= BASEURL ?>/img/products/<?= $product["image"]?>.jpg" class="card-img-top" alt="...">
+          <img src="<?= BASEURL ?>/img/products/<?= $product["image"]?>.jpg" class="card-img-top" />
           <!-- Actions -->
           <div class="card-body">
             <div class="d-flex flex-row gap-2">

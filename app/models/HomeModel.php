@@ -21,14 +21,14 @@
     
     // To get stock product
     public function getStock($id) {
-      $this->db->query("SELECT stock FROM product WHERE id=:id");
+      $this->db->query("SELECT stock, price FROM product WHERE id=:id");
       $this->db->bind("id", $id);
-      return $this->db->single()["stock"];
+      return $this->db->single();
     }
     
     // To get number of items in cart
-    public function getCart($id) {
-      $this->db->query("SELECT COUNT(*) as count FROM orders WHERE user_id=:id");
+    public function getTotalCart($id) {
+      $this->db->query("SELECT COUNT(*) as count FROM orders WHERE user_id=:id AND status='keranjang'");
       $this->db->bind("id", $id);
       $this->db->execute();
       return $this->db->single()["count"];
@@ -70,6 +70,84 @@
       $this->db->query("SELECT * FROM product WHERE id=:id");
       $this->db->bind("id", $id);
       return $this->db->single();
+    }
+
+    // To add product to cart
+    public function cart($user_id, $product_id, $quantity, $price) {
+      // Set to the current time in Jakarta timezone
+      $datetime = new DateTime("now", new DateTimeZone("Asia/Jakarta"));
+      $created_at = $datetime->format("Y-m-d H:i:s");
+    
+      $this->db->query(
+        "INSERT INTO orders (
+            user_id, 
+            product_id, 
+            quantity,
+            total, 
+            status, 
+            created_at
+        ) VALUES (
+            :user_id, 
+            :product_id, 
+            :quantity,
+            :total, 
+            'keranjang', 
+            :created_at)
+        ");
+      
+      $this->db->bind("user_id", $user_id);
+      $this->db->bind("product_id", $product_id);
+      $this->db->bind("quantity", $quantity);
+      $this->db->bind("total", $price * $quantity);
+      $this->db->bind("created_at", $created_at);
+      $this->db->execute();
+      
+      return $this->db->rowCount();
+    }
+
+    // To get cart details
+    public function getCart($user_id) {
+      $this->db->query(
+        "SELECT orders.id,
+                product.image, 
+                product.name,
+                product.category,
+                product.supplier, 
+                orders.quantity, 
+                orders.total, 
+                orders.created_at 
+        FROM orders 
+        INNER JOIN product on orders.product_id=product.id 
+        WHERE orders.user_id=:user_id AND orders.status = 'keranjang';"
+      );
+
+      $this->db->bind("user_id", $user_id);
+      $this->db->execute();
+      return $this->db->resultSet();
+    }
+
+    // To remove product from cart
+    public function deleteCart($id) {
+      $this->db->query("DELETE FROM orders WHERE id=:id");
+      $this->db->bind("id", $id);
+      $this->db->execute();
+      return $this->db->rowCount();
+    }
+
+    // To process checkout
+    public function checkout($user_id, $payment) {
+      $this->db->query(
+          "UPDATE orders SET 
+            status='konfirmasi', 
+            payment=:payment 
+          WHERE user_id=:user_id AND status='keranjang'
+      ");
+
+      $this->db->bind("user_id", $user_id);
+      $this->db->bind("payment", $payment);
+      $this->db->execute();
+
+      return $this->db->rowCount();
     }
   }
 ?>
