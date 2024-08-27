@@ -109,6 +109,7 @@
     public function getCart($user_id) {
       $this->db->query(
         "SELECT orders.id,
+                product.id as product_id,
                 product.image, 
                 product.name,
                 product.category,
@@ -148,6 +149,15 @@
       $this->db->execute();
 
       return $this->db->rowCount();
+    }
+
+    // To get user details by ID
+    public function getUserById($id) {
+      $this->db->query("SELECT * FROM customer WHERE id=:id");
+      $this->db->bind("id", $id);
+      $this->db->execute();
+
+      return $this->db->single();
     }
   }
 ?>

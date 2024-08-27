@@ -4,7 +4,11 @@
   require_once "core/App.php";
   require_once "core/Controller.php";
   require_once "core/Database.php";
-
+  require_once "core/Payment.php";
+  
+  // Import package
+  require_once __DIR__ . "/package/vendor/autoload.php";
+  
   // Initialize application
   $app = new App;
 ?>

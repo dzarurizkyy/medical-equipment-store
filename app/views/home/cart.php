@@ -74,7 +74,7 @@
   </div>
   <!-- Checkout -->
   <?php if(Home::totalCart($_SESSION["user_id"]) != 0 ) :  ?>
-    <form action="<?= BASEURL?>/home/checkout" method="post" class="d-flex justify-content-between align-items-center px-4 py-3 position-fixed bottom-0 w-100" style="background-color: #29978C; color: #FFFFFF;">
+    <form action="<?= BASEURL?>/home/payment" method="post" class="d-flex justify-content-between align-items-center px-4 py-3 position-fixed bottom-0 w-100" style="background-color: #29978C; color: #FFFFFF;">
       <!-- Payment -->
       <div class="d-flex gap-3">
         <!-- Cash -->
@@ -98,6 +98,7 @@
         <div class="d-flex flex-column text-end">
           <div style="font-size: 14px;">Total</div>
           <div class="fw-bold" style="font-size: 18px;">Rp<?= $data["total"] ?></div>
+          <input type="hidden" value="<?= $data["total"] ?>" name="total" id="total"/>
         </div>
         <!-- Submit -->
         <div>

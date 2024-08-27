@@ -146,12 +146,20 @@
           echo "<script>window.location.href='" . BASEURL ."/home'</script>";
         }
       }
-
+      
       // Check if user is logged in before displaying page
       if(isset($_SESSION["login"]) && $_SESSION["login"] === "true") {
         $this->view("templates/header", $data);
         $this->view("templates/navbar");
         $this->view("home/cart", $data);
+
+        if(isset($_SESSION["payment"]) && isset($_SESSION["token"]) && $_SESSION["payment"] === "debit") {
+          $data["token"] = $_SESSION["token"];         
+          unset($_SESSION["token"]);
+
+          $this->view("home/payment", $data);
+        }
+        
         $this->view("templates/footer");
       } else {
         // Redirect to auth page if not logged in
@@ -160,18 +168,289 @@
       }
     }
 
+    // To handle payment process
+    public function payment() {
+      $user = $this->model("HomeModel")->getUserById($_SESSION["user_id"]);
+      $orders = $this->model("HomeModel")->getCart($_SESSION["user_id"]);
+
+      $_SESSION["payment"] = $_POST["checkout"];
+      $_SESSION["total"] = $_POST["total"];
+
+      // Check if user is logged in and payment method is selected
+      if(isset($_SESSION["user_id"]) && isset($_POST["checkout"])) {
+        // If payment method is debit, generate Snap token and proceed to cart
+        if($_POST["checkout"] === "debit") {
+          $items  = [];
+          
+          foreach($orders as $order) {
+            $items[] = [
+              "id" => $order["id"],
+              "name" => $order["name"],
+              "quantity" => $order["quantity"],
+              "price" => $order["total"]
+            ];
+          }
+  
+          $params = [
+            "transaction_details" => [
+              "order_id" => rand(),
+              "gross_amount" => $_POST["total"],
+            ],
+            "item_details" => $items,
+            "customer_details" => [
+              "first_name" => $user["username"],
+              "email" => $user["email"],
+              "phone" => $user["phone_number"]
+            ]
+          ];
+          
+          $_SESSION["token"] = $this->midtrans()->getSnapToken($params);
+          $this->cart();
+        } else {
+          // If payment method is not debit, proceed to checkout
+          $this->checkout();
+        }
+      }
+    }
+
     // To process checkout
     public function checkout() {
       // It updates order status to 'konfirmasi' and sets payment method.
-      if(isset($_SESSION["user_id"]) && isset($_POST["checkout"])) {
-        if($this->model("HomeModel")->checkout($_SESSION["user_id"], $_POST["checkout"]) > 0) {
-          echo "<script>alert('Thank you for your order 😊!')</script>";
-          echo "<script>window.location.href='" . BASEURL ."/home'</script>";
+      if(isset($_SESSION["user_id"]) && isset($_SESSION["payment"])) {    
+        $user = $this->model("HomeModel")->getUserById($_SESSION["user_id"]);
+        $orders = $this->model("HomeModel")->getCart($_SESSION["user_id"]); 
+
+        if($this->model("HomeModel")->checkout($_SESSION["user_id"], $_SESSION["payment"]) > 0) {
+          $this->invoice($user, $orders);
         } else {
           echo "<script>alert('Failed to process your order 😢!')</script>";
           echo "<script>window.location.href='" . BASEURL ."/home/cart'</script>";
         }
       } 
+    }
+
+    // To generate invoice
+    public function invoice($user, $orders) {
+      $date = date("d F Y", strtotime($orders[count($orders) - 1]["created_at"]));
+      $service = $_SESSION["payment"] === "debit" ? "Midtrans" : "-";
+      $payment = $_SESSION["payment"] ? ucfirst($_SESSION["payment"]) : "-";
+
+      // Generate PDF documents
+      $body = '
+      <body style="font-family: arial;">
+        <h2 style="text-align: center;">Toko Alat Kesehatan <br /> Laporan Belanja Anda </h2>
+        <br />
+        <table border="0" cellspacing="2" style="margin-left: auto; margin-right: auto;"> 
+          <tr>
+            <td>User ID<td>
+            <td>:</td>
+            <td>' . $user["id"] . '</td>
+            
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td> 
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+
+            <td>Tanggal</td>
+            <td>:</td>
+            <td>' . $date . '</td>
+          </tr>
+          <tr>
+            <td>Nama<td>
+            <td>:</td>
+            <td>' . $user["username"] . '</td>
+            
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td> 
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+
+            <td>Layanan</td>
+            <td>:</td>
+            <td>' . $service . '</td>
+          </tr>
+          <tr>
+            <td>Alamat<td>
+            <td>:</td>
+            <td>' . $user["address"] . '</td>
+            
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+
+            <td>Cara Bayar</td>
+            <td>:</td>
+            <td>' . $payment . '</td>
+          </tr>
+          <tr>
+            <td>No Hp<td>
+            <td>:</td>
+            <td>' . $user["phone_number"] . '</td>
+            
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+
+            <td>Status</td>
+            <td>:</td>
+            <td>Dalam Konfirmasi</td>
+          </tr>
+        </table>
+        <br />
+        <br />
+        <table border="1" cellpadding="4" cellspacing="0" style="width: 100%">
+          <tr>
+            <th>No.</th>
+            <th>Nama Produk dengan IDnya</th>
+            <th>Jumlah</th>
+            <th>Harga</th>
+          </tr>
+        ';
+          foreach($orders as $index=>$order) :
+            $body .= '
+            <tr>
+              <td style="text-align: center;">'. ++$index .'</td>
+              <td>'. $order["name"] . ' (ID:' . $order["product_id"].')</td>
+              <td style="text-align: center;">'. $order["quantity"] .'</td>
+              <td>Rp'. $order["total"] .'</td>
+            </tr>';
+          endforeach;
+      $body .=
+        '</table>
+          <p>Total Belanja : <b><u>Rp' . $_SESSION["total"] . '<u></b></p>
+          <br/><br/>
+          <div style="text-align: right">
+            <img src="' . BASEURL . '/img/assets/Signature.png" width="100" style="margin-right: 60px;"/>
+            <div><b><u>Dzaru Rizky Fathan Fortuna<b><u></div>
+          </div>
+      </body>';
+
+      unset($_SESSION["payment"]);
+      unset($_SESSION["total"]);
+
+      $pdf = $this->PDF();
+      $pdf->writeHTML($body);
+      
+      $uniq = "invoice-" . strtotime($orders[count($orders) - 1]['created_at']);
+      $file = "./docs/invoices/{$uniq}.pdf";
+      
+      $pdf->output("{$file}", "F");
+      
+      // Send email to the customers
+      $message = '
+        <html>
+          <head>
+            <style type="text/css">
+              body {
+                font-family: Calibri;
+                font-size: 16px;
+                color: #000
+              }
+            </style>
+          </head>
+          <body>
+            Dear <b>' . $user["username"] . '</b>, <br /><br />
+            Berikut merupakan struk pembayaran terbaru anda <br />
+            ---------------------------------------------- <br />
+            Terima kasih telah berbelanja di toko kami 😊 
+          </body>
+        </html>
+      ';
+
+      $mail = $this->mail();
+      $mail->CharSet = "UTF-8";
+      $mail->IsMAIL();
+      $mail->IsSMTP();
+      $mail->SMTPDebug = 0; 
+      $mail->SMTPAuth = true;
+      $mail->SMTPSecure = 'ssl'; 
+      $mail->Port = 465; 
+      $mail->Host = 'smtp.gmail.com'; 
+      $mail->Username = 'dzarurizkybusiness@gmail.com'; 
+      $mail->Password = 'oxwu ybou oqbf xtmn'; 
+      $mail->Subject = "Struk Pembayaran Anda";
+      $mail->From = "mail@tokoalatkesehatan.com";
+      $mail->FromName = "Toko Alat Kesehatan";
+      $mail->IsHTML(true);
+      $mail->AddAddress("{$user['email']}");
+      $mail->AddAttachment($file);
+      $mail->MsgHTML($message);
+      $mail->WordWrap = 50;
+      $mail->Send();
+      $mail->SmtpClose();
+
+      if ($mail->isError()) {
+        echo "<script>alert('Failed to send your invoice details to your email 😢!')</script>";
+      } else {
+        echo "<script>alert('Thank you for your order 😊!')</script>";
+      }
+      echo "<script>window.location.href='" . BASEURL ."/home'</script>";
     }
   };
 ?>
