@@ -159,5 +159,50 @@
 
       return $this->db->single();
     }
+
+    // To get order status by user ID
+    public function getStatus($user_id) {
+      $this->db->query(
+        "SELECT orders.id,
+                product.image,
+                product.name,
+                product.category,
+                product.supplier,
+                orders.quantity,
+                orders.total,
+                orders.status,
+                orders.created_at
+        FROM orders
+        INNER JOIN product on orders.product_id=product.id
+        WHERE orders.user_id=:user_id AND orders.status != 'keranjang' ORDER BY created_at DESC"
+      );
+
+      $this->db->bind("user_id", $user_id);
+      $this->db->execute();
+
+      return $this->db->resultSet();
+    }
+
+    // To submit feedback for an order
+    public function feedback($data) {
+      $created_at = datetime();
+
+      $this->db->query("INSERT INTO feedback values ('', :order_id, :rating, :message, :created_at)");
+      $this->db->bind("order_id", $data["order_id"]);
+      $this->db->bind("rating", $data["rating"]);
+      $this->db->bind("message", $data["message"]);
+      $this->db->bind("created_at", $created_at);
+      $this->db->execute();
+
+      return $this->db->rowCount();
+    }
+
+    // To get total feedback for an order
+    public function getTotalFeedback($order_id) {
+      $this->db->query("SELECT COUNT(*) as count FROM feedback WHERE order_id=:order_id");
+      $this->db->bind("order_id", $order_id);
+      $this->db->execute();
+      return $this->db->single()["count"];
+    }
   }
 ?>

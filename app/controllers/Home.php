@@ -472,6 +472,64 @@
       }
     }
 
+    // To display status user orders
+    public function status($param = "", $value = 0) {
+      $data["title"] = "Status";
+      $data["orders"] = $this->model("HomeModel")->getStatus($_SESSION["user_id"]); 
+      $data["total"]  = 0;
+
+      // Cancel order and remove product from history orders
+      if($param === "cancel") {
+        if($this->model("HomeModel")->deleteCart($value) > 0) {
+          echo "<script>alert('Order successfully cancelled 😊!')</script>";
+          echo "<script>window.location.href='" . BASEURL ."/home/status'</script>";
+        } else {
+          echo "<script>alert('Order unsuccessfully cancelled 😢!')</script>";
+          echo "<script>window.location.href='" . BASEURL ."/home'</script>";
+        }
+      }
+
+       // Check if user is logged in before displaying page
+       if(isset($_SESSION["login"]) && $_SESSION["login"] === "true") {
+        $this->view("templates/header", $data);
+        $this->view("templates/navbar");
+        $this->view("home/status", $data);
+        $this->view("templates/footer");
+      } else {
+        // Redirect to auth page if not logged in
+        header("Location: " . BASEURL . "/auth");
+        exit;
+      }
+    }
+    
+    // To submit feedback for an order
+    public function submitFeedback() {
+      if(isset($_POST)) {
+        // Check if rating is within range 1 to 5
+        if($_POST["rating"] > 5 || $_POST["rating"] < 1) {
+          // If rating is not within range, display an alert and redirect to status page
+          echo "<script>alert('Rating input only from 1 to 5 😢!')</script>";
+          echo "<script>window.location.href='" . BASEURL . "/home/status'</script>";
+        }
+
+        if($this->model("HomeModel")->feedback($_POST) > 0) {
+          echo "<script>alert('Successfully submit your feedback! Thank you for your time 😊.')</script>";
+          echo "<script>window.location.href='" . BASEURL . "/home'</script>";
+        } else {
+          echo "<script>alert('Failed to submit your feedback. Please try again later 😢.')</script>";
+          return;
+        }
+      }
+    }
+
+    // To check if feedback exists for an order
+    public function existFeedback($order_id) {
+      if ($this->model("HomeModel")->getTotalFeedback($order_id) === 1) {
+        return 1;
+      }
+      return 0;
+    }
+
     // To logout from user section
     public function logout() {
       session_unset();

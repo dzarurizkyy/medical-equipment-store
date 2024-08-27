@@ -12,6 +12,10 @@
     <!-- CSS Bootstrap -->
     <link href="<?= BASEURL ?>/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <!-- External CSS -->
+    <link rel="stylesheet" href="<?= BASEURL ?>/css/native.css" />
+    <!-- Jquery -->
+    <script src="<?= BASEURL ?>/js/jquery-3.7.1.min.js" async></script>
     <!-- JS Midtrans -->
     <script type="text/javascript" src="https://app.sandbox.midtrans.com/snap/snap.js"
     data-client-key="<?= MIDTRANSCLIENT ?>"></script>

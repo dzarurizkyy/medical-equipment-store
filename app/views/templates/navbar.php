@@ -18,7 +18,7 @@
         </li>
         <!-- Status -->
         <li class="nav-item ">
-          <a class="nav-link fw-semibold text-light" href="#">Status</a>
+          <a class="nav-link fw-semibold text-light" href="<?= BASEURL ?>/home/status">Status</a>
         </li>
       </ul>
       <div class="d-flex flex-row gap-3 align-items-center">

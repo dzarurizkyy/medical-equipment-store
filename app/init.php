@@ -9,6 +9,9 @@
   // Import package
   require_once __DIR__ . "/package/vendor/autoload.php";
   
+  // Import helper
+  require_once "helper/datetime.php";
+
   // Initialize application
   $app = new App;
 ?>

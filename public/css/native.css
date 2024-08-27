@@ -1,0 +1,29 @@
+.filter-card {
+  display: flex;
+  gap: 2px;
+}
+
+.product-card {
+  width: 30%;
+}
+
+
+@media screen and (max-width: 1200px) {
+  .filter-card {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 766px) {
+  .pagination-product {
+    position: fixed;
+    bottom: 0;
+    left: 50%;
+    right: 50%;
+  }
+  .product-card {
+    width: 100%;
+    height: 17.4% !important;
+  }
+}
+
