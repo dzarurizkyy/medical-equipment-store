@@ -44,6 +44,7 @@
         $this->view("templates/header", $data);
         $this->view("templates/navbar");
         $this->view("home/index", $data);
+        $this->view("templates/logout");
         $this->view("templates/footer");
       } else {
         // Redirect to auth page if not logged in
@@ -432,8 +433,8 @@
       $mail->SMTPSecure = 'ssl'; 
       $mail->Port = 465; 
       $mail->Host = 'smtp.gmail.com'; 
-      $mail->Username = 'dzarurizkybusiness@gmail.com'; 
-      $mail->Password = 'oxwu ybou oqbf xtmn'; 
+      $mail->Username = SMTPEMAIL; 
+      $mail->Password = SMTPPASS; 
       $mail->Subject = "Struk Pembayaran Anda";
       $mail->From = "mail@tokoalatkesehatan.com";
       $mail->FromName = "Toko Alat Kesehatan";
@@ -451,6 +452,33 @@
         echo "<script>alert('Thank you for your order 😊!')</script>";
       }
       echo "<script>window.location.href='" . BASEURL ."/home'</script>";
+    }
+
+    // To display user profile
+    public function profile() {
+      $data["title"] = "Profile";
+      $data["user"]  = $this->model("HomeModel")->getUserByID($_SESSION["user_id"]);
+
+      // Check if user is logged in before displaying page
+      if(isset($_SESSION["login"]) && $_SESSION["login"] === "true") {
+        $this->view("templates/header", $data);
+        $this->view("templates/navbar");
+        $this->view("home/profile", $data);
+        $this->view("templates/footer");
+      } else {
+        // Redirect to auth page if not logged in
+        header("Location: " . BASEURL . "/auth");
+        exit;
+      }
+    }
+
+    // To logout from user section
+    public function logout() {
+      session_unset();
+      session_destroy();
+
+      header("Location: " . BASEURL);
+      exit;
     }
   };
 ?>

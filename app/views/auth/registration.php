@@ -1,5 +1,5 @@
 <!-- Container -->
-<div style="background-image: url('<?= BASEURL ?>/img/assets/Background.jpg'); background-repeat: no-repeat;  background-size: cover; background-attachment: fixed;">
+<div style="background-image: url('<?= BASEURL ?>/img/assets/Background.png'); background-repeat: no-repeat;  background-size: cover; background-attachment: fixed;">
   <!-- Card -->
   <div class="container d-flex justify-content-center p-4">
     <!-- Row -->

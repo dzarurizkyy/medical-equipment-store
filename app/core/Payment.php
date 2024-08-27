@@ -4,7 +4,7 @@
     class Midtrans {
         // To initialize Midtrans configuration
         public function __construct() {
-            \Midtrans\Config::$serverKey = 'SB-Mid-server-dBw1NnXYfc7kGh8MNpg5xnBo';
+            \Midtrans\Config::$serverKey = MIDTRANSSERVER;
             \Midtrans\Config::$isProduction = false;
             \Midtrans\Config::$isSanitized = true;
             \Midtrans\Config::$is3ds = true;

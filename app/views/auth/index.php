@@ -1,5 +1,5 @@
 <!-- Container -->
-<div style="background-image: url('<?= BASEURL ?>/img/assets/Background.jpg'); background-repeat: no-repeat;  background-size: cover; background-attachment: fixed; height: 100vh;">
+<div style="background-image: url('<?= BASEURL ?>/img/assets/Background.png'); background-repeat: no-repeat;  background-size: cover; background-attachment: fixed; height: 100vh;">
   <!-- Card -->
   <div class="container d-flex align-items-center justify-content-center flex-column p-4 h-100">
     <!-- Auth -->

@@ -14,6 +14,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
     <!-- JS Midtrans -->
     <script type="text/javascript" src="https://app.sandbox.midtrans.com/snap/snap.js"
-    data-client-key="SB-Mid-client-V0UgwNIrcup7Wfau"></script>
+    data-client-key="<?= MIDTRANSCLIENT ?>"></script>
   </head>
   <body>

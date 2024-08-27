@@ -21,18 +21,25 @@
           <a class="nav-link fw-semibold text-light" href="#">Status</a>
         </li>
       </ul>
-      <!-- Cart -->
-      <a class="navbar-text fw-semibold text-decoration-none text-light fs-4" href="<?= BASEURL ?>/home/cart">
-        <!-- Icon -->
-        <i class="fa fa-shopping-cart position-relative">
-          <!-- Badge -->
-          <?php if(Home::totalCart($_SESSION["user_id"]) !== 0) :?>
-            <div class="badge rounded-pill bg-danger position-absolute top-0 start-100 translate-middle" style="font-size: 10px;">
-              <?= Home::totalCart($_SESSION["user_id"]) ?>
-            </div>
-          <?php endif; ?>
-        </i>
-      </a>
+      <div class="d-flex flex-row gap-3 align-items-center">
+        <!-- Person -->
+        <a href="<?= BASEURL ?>/home/profile" class="mt-2">
+          <!-- Icon -->
+          <i class="fa fa-user-circle" style="color: #FFF; font-size: 22px;"></i>
+        </a>
+        <!-- Cart -->
+        <a class="navbar-text fw-semibold text-decoration-none text-light fs-4" href="<?= BASEURL ?>/home/cart">
+          <!-- Icon -->
+          <i class="fa fa-shopping-cart position-relative">
+            <!-- Badge -->
+            <?php if(Home::totalCart($_SESSION["user_id"]) !== 0) :?>
+              <div class="badge rounded-pill bg-danger position-absolute top-0 start-100 translate-middle" style="font-size: 10px;">
+                <?= Home::totalCart($_SESSION["user_id"]) ?>
+              </div>
+            <?php endif; ?>
+          </i>
+        </a>
+      </div>
     </div>
   </div>
 </nav>
