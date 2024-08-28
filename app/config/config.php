@@ -1,15 +1,15 @@
 <?php
   // Constant variable  
-  define("BASEURL", "http://localhost/bnsp-project/public");
+  define("BASEURL", "");
   
-  define("DBHOST", "localhost");
-  define("DBUSER", "root");
+  define("DBHOST", "");
+  define("DBUSER", "");
   define("DBPASS", "");
-  define("DBNAME", "bnsp-project");
+  define("DBNAME", "");
 
-  define("SMTPEMAIL", "dzarurizkybusiness@gmail.com");
-  define("SMTPPASS", "oxwu ybou oqbf xtmn");
+  define("SMTPEMAIL", "");
+  define("SMTPPASS", "");
   
-  define("MIDTRANSCLIENT", "SB-Mid-client-V0UgwNIrcup7Wfau");
-  define("MIDTRANSSERVER", "SB-Mid-server-dBw1NnXYfc7kGh8MNpg5xnBo");
+  define("MIDTRANSCLIENT", "");
+  define("MIDTRANSSERVER", "");
 ?>

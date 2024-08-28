@@ -1,6 +1,7 @@
 <?php 
   // Count number of segments in URL to determine current page
   $page = count(explode("/", $_SERVER['REQUEST_URI']));
+  $identifier = "";
 
   // Extract category from URL for detail product page to add quantity
   if($page == 6) {
@@ -10,6 +11,7 @@
   // Extract category from URL for detail product page with subcategory to add quantity
   if($page == 9) {
     $category = explode("/", $_SERVER['REQUEST_URI'])[6];
+    $identifier = explode("/", $_SERVER['REQUEST_URI'])[5];
   } 
 ?>
 
@@ -31,9 +33,9 @@
                 <!-- View -->
                 <a href="<?= BASEURL ?>/home/detail/<?= $product["id"] ?>" class="btn w-50 fw-semibold text-white" style="background-color: #29978C;">
                   View
-                </a>
+                </a>  
                 <!-- Buy -->
-                <a href="<?= $page == 4 || $page == 7 ? BASEURL . '/home/index/cart/' : BASEURL . '/home/index/category/' . $category . '/cart/' ?><?= $product["id"] ?>" class="btn w-50 fw-semibold text-white" style="background-color: #29978C;">
+                <a href="<?= $page == 4 || $page == 7 || $identifier == 'page' ? BASEURL . '/home/index/page/' . $data["active_page"] . '/cart/' : BASEURL . '/home/index/category/' . $category . '/cart/' ?><?= $product["id"] ?>" class="btn w-50 fw-semibold text-white" style="background-color: #29978C;">
                   Buy
                 </a>
               </div>
