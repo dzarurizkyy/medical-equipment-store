@@ -65,5 +65,81 @@
         }
       }
     }
+
+    // Display supplier management page
+    public function supplier($param = "", $value = 0) { 
+      $data["title"] = "Supplier";
+      $data["supplier"] = $this->model("AdminModel")->getSupplier();
+      
+      // Check if user is an admin and display supplier page if true
+      if(isset($_SESSION["admin"]) && $_SESSION["admin"] === "true") {
+        $this->view("templates/header", $data);
+        $this->view("templates/navbarAdmin", $data);
+        $this->view("admin/supplier", $data);
+        $this->view("templates/footer");
+      } else {
+        // Redirect to admin login if not an admin
+        header("Location: ". BASEURL . "/auth/admin");
+        exit;
+      }
+
+      // Handle add supplier data
+      if($param === "add") {
+        if(isset($_POST) && $this->model("AdminModel")->addSupplier($_POST) > 0) {
+          echo "<script>alert('Supplier data successfully added 😊.')</script>";
+          echo "<script>window.location.href='" . BASEURL ."/admin/supplier'</script>";
+        } else {
+          echo "<script>alert('Failed to add supplier data 😢.')</script>";
+        }
+      }
+
+      // Handle update supplier data
+      if($param === "update") {
+        if(isset($_POST) && $this->model("AdminModel")->updateSupplier($_POST) > 0) {
+          echo "<script>alert('Supplier data successfully updated 😊.')</script>";
+          echo "<script>window.location.href='" . BASEURL ."/admin/supplier'</script>";
+        } else {
+          echo "<script>alert('Failed to update supplier data 😢.')</script>";
+        }
+      }
+
+      // Handle delete supplier data
+      if($param === "delete") {
+        if($this->model("AdminModel")->deleteSupplier($value) > 0) {
+          echo "<script>alert('Supplier data successfully deleted 😊.')</script>";
+          echo "<script>window.location.href='" . BASEURL ."/admin/supplier'</script>";
+        } else {
+          echo "<script>alert('Failed to delete supplier data 😢.')</script>";
+        }
+      }
+    }
+
+    // Display feedback management page
+    public function feedback($param = "", $value = 0) {
+      $data["title"]    = "Feedback";
+      $data["feedback"] = $this->model("AdminModel")->getFeedback();
+
+      // Check if user is an admin and display feedback page if true
+      if(isset($_SESSION["admin"]) && $_SESSION["admin"] === "true") {
+        $this->view("templates/header", $data);
+        $this->view("templates/navbarAdmin", $data);
+        $this->view("admin/feedback", $data);
+        $this->view("templates/footer");
+      } else {
+        // Redirect to admin login if not an admin
+        header("Location: ". BASEURL . "/auth/admin");
+        exit;
+      }
+
+      // Handle delete feedback data
+      if($param === "delete") {
+        if(isset($_POST) && $this->model("AdminModel")->deleteFeedback($value) > 0) {
+          echo "<script>alert('Feedback data successfully deleted 😊.')</script>";
+          echo "<script>window.location.href='" . BASEURL ."/admin/feedback'</script>";
+        } else {
+          echo "<script>alert('Failed to delete feedback data 😢.')</script>";
+        }
+      }
+    }
   }
 ?>

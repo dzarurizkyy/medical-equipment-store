@@ -14,11 +14,11 @@
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <!-- Home -->
         <li class="nav-item">
-          <a class="nav-link active fw-semibold text-light" href="<?= BASEURL?>/admin/customer">Customer</a>
+          <a class="nav-link active fw-semibold text-light" href="<?= BASEURL ?>/admin/customer">Customer</a>
         </li>
         <!-- Status -->
         <li class="nav-item ">
-          <a class="nav-link fw-semibold text-light" href="#">Supplier</a>
+          <a class="nav-link fw-semibold text-light" href="<?= BASEURL ?>/admin/supplier">Supplier</a>
         </li>
         <!-- Product -->
         <li class="nav-item ">
@@ -26,7 +26,7 @@
         </li>
          <!--Feedback -->
          <li class="nav-item ">
-          <a class="nav-link fw-semibold text-light" href="#">Feedback</a>
+          <a class="nav-link fw-semibold text-light" href="<?= BASEURL ?>/admin/feedback">Feedback</a>
         </li>
       </ul>
     </div>
