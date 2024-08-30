@@ -112,15 +112,102 @@
       return $this->db->rowCount();
     }
 
-    // To get all feedback
+    // To get all products
+    public function getProduct() {
+      $this->db->query(
+        "SELECT 
+          product.id, 
+          product.image, 
+          product.name,
+          product.description, 
+          product.category, 
+          supplier.id as supplier_id,
+          supplier.name as supplier_name, 
+          product.stock, 
+          product.price 
+        FROM product 
+        INNER JOIN supplier ON product.supplier_id = supplier.id 
+        ORDER BY product.updated_at DESC;
+      ");
+
+      $this->db->execute();
+      return $this->db->resultSet();
+    }
+
+    // To add new product
+    public function addProduct($data) {
+      $this->db->query("INSERT INTO product VALUES ('', :image, :name, :description, :category, :supplier_id, :stock, :price, :created_at, :updated_at)"
+      );
+
+      $date = datetime();
+
+      $this->db->bind("image", $data["image"]);
+      $this->db->bind("name", $data["name"]);
+      $this->db->bind("description", $data["description"]);
+      $this->db->bind("category", $data["category"]);
+      $this->db->bind("supplier_id", $data["supplier_id"]);
+      $this->db->bind("stock", $data["stock"]);
+      $this->db->bind("price", $data["price"]);
+      $this->db->bind("created_at", $date);
+      $this->db->bind("updated_at", $date);
+
+      $this->db->execute();
+      return $this->db->rowCount();
+    }
+
+    // To update product data
+    public function updateProduct($data) {
+      $this->db->query(
+        "UPDATE product SET
+          name=:name,
+          image=:image,
+          description=:description,
+          category=:category,
+          supplier_id=:supplier_id,
+          stock=:stock,
+          price=:price
+         WHERE id=:id 
+      ");
+
+      $this->db->bind("id", $data["id"]);
+      $this->db->bind("name", $data["name"]);
+      $this->db->bind("image", $data["image"]);
+      $this->db->bind("description", $data["description"]);
+      $this->db->bind("category", $data["category"]);
+      $this->db->bind("supplier_id", $data["supplier_id"]);
+      $this->db->bind("stock", $data["stock"]);
+      $this->db->bind("price", $data["price"]);
+
+      $this->db->execute();
+      return $this->db->rowCount();
+    }
+
+    // To delete product
+    public function deleteProduct($id) {
+      $this->db->query("DELETE FROM product WHERE id=:id");
+      $this->db->bind("id", $id);
+      $this->db->execute();
+      
+      return $this->db->rowCount();
+    }
+    
+    // To get all feedbacks
     public function getFeedback() {
-      $this->db->query("SELECT 
-        feedback.id, customer.username as customer, product.name as product, feedback.rating, feedback.message, feedback.created_at 
+      $this->db->query(
+        "SELECT 
+          feedback.id, 
+          customer.username as customer, 
+          product.name as product, 
+          feedback.rating, 
+          feedback.message, 
+          feedback.created_at 
         FROM feedback 
         INNER JOIN orders ON feedback.order_id=orders.id 
         INNER JOIN customer on orders.user_id = customer.id 
-        INNER JOIN product ON orders.product_id=product.id;"
+        INNER JOIN product ON orders.product_id=product.id
+        ORDER BY feedback.created_at DESC;"
       );
+
       $this->db->execute();
       return $this->db->resultSet();
     }

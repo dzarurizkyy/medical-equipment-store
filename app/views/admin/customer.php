@@ -167,21 +167,9 @@
     modal.find('.modal-body #username').val(username)
     modal.find('.modal-body #email').val(email)
     modal.find('.modal-body #birth').val(birth)
+    modal.find('.modal-body #gender').val(gender)
+    modal.find('.modal-body #city').val(city)
     modal.find('.modal-body #phone').val(phone)
     modal.find('.modal-body #address').val(address)
-    
-    if (gender === "male") {
-      modal.find('.modal-body #gender').val("male");
-    } else {
-      modal.find('.modal-body #gender').val("female");
-    }
-
-    if (city === "Jakarta") {
-      modal.find('.modal-body #city').val("Jakarta");
-    } else if (city === "Surabaya") {
-      modal.find('.modal-body #city').val("Surabaya");
-    } else {
-      modal.find('.modal-body #city').val("Malang");
-    }
   })
 </script>

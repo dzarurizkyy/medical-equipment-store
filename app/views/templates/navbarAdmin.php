@@ -22,7 +22,7 @@
         </li>
         <!-- Product -->
         <li class="nav-item ">
-          <a class="nav-link fw-semibold text-light" href="#">Product</a>
+          <a class="nav-link fw-semibold text-light" href="<?= BASEURL ?>/admin/product">Product</a>
         </li>
          <!--Feedback -->
          <li class="nav-item ">

@@ -157,7 +157,6 @@
 </div>
 
 <script src="<?= BASEURL ?>/js/jquery-3.7.1.min.js"></script>
-
 <script>
   $("#update").on("show.bs.modal", function (event) {
     var button      = $(event.relatedTarget)
@@ -175,15 +174,5 @@
     modal.find('.modal-body #phone').val(phone)
     modal.find('.modal-body #city').val(city)
     modal.find('.modal-body #address').val(address)
-
-    if (city === "Jakarta") {
-      modal.find('.modal-body #city').val("Jakarta")
-    } else if(city === "Surabaya") {
-      modal.find('.modal-body #city').val("Surabaya")
-    } else if(city === "Yogyakarta") {
-      modal.find('.modal-body #city').val("Yogyakarta")
-    } else {
-      modal.find('.modal-body #city').val("Bali")
-    }
   })
 </script>
