@@ -219,5 +219,54 @@
       $this->db->execute();
       return $this->db->rowCount();
     }
+
+    // To get all orders
+    public function getOrder() {
+      // Query to retrieve all orders with customer information where status is 'konfirmasi'
+      $this->db->query(
+        "SELECT 
+          customer.id,
+          customer.username,
+          customer.city,
+          customer.address,
+          MAX(orders.created_at) as created_at
+         FROM orders
+         INNER JOIN customer ON orders.user_id = customer.id
+         WHERE status = 'konfirmasi'
+         GROUP BY customer.id;"
+      );
+
+      $this->db->execute();
+      return $this->db->resultSet();
+    }
+
+    // To get detail order
+    public function getDetailOrder($id) {
+      // Query to retrieve order details including product information where status is 'konfirmasi' and user_id matches
+      $this->db->query(
+        "SELECT 
+          product.name,
+          orders.quantity,
+          orders.total,
+          orders.payment,
+          orders.created_at
+        FROM orders
+        INNER JOIN product ON orders.product_id = product.id
+        WHERE status = 'konfirmasi' AND orders.user_id = :id" 
+      );
+
+      $this->db->bind("id", $id);
+      $this->db->execute();
+      return $this->db->resultSet();
+    }
+    
+    // To update order status
+    public function updateStatusOrder($id, $status) {
+      $this->db->query("UPDATE orders SET status=:status WHERE user_id=:user_id");
+      $this->db->bind("user_id", $id);
+      $this->db->bind("status", $status);
+      $this->db->execute();
+      return $this->db->rowCount();
+    }
   }
 ?>

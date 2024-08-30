@@ -1,13 +1,40 @@
 <?php 
   class Admin extends Controller {
     // Display admin dashboard
-    public function index() {
-      $data["title"] = "Dashboard";
+    public function index($param = "", $value = 0) {
+      $data["title"]  = "Dashboard";
+      $data["orders"] = $this->model("AdminModel")->getOrder(); 
+      
+      // Handle display order details
+      if($param === "view") {
+        $data["order"] = $this->model("AdminModel")->getDetailOrder($value);
+      }
+      
+      // Handle customer order approval
+      if($param === "accept") {
+        if($this->model("AdminModel")->updateStatusOrder($value, "disetujui") > 0) {
+          echo "<script>alert('Order status successfully approved 😊.')</script>";
+          echo "<script>window.location.href='" . BASEURL ."/admin'</script>";          
+        } else {
+          echo "<script>alert('Failed to approved order status 😢.')</script>";
+        }
+      }
+
+      // Handle customer order cancellation
+      if($param === "decline") {
+        if($this->model("AdminModel")->updateStatusOrder($value, "dibatalkan") > 0) {
+          echo "<script>alert('Order status successfully declined 😊.')</script>";
+          echo "<script>window.location.href='" . BASEURL ."/admin'</script>";          
+        } else {
+          echo "<script>alert('Failed to declined order status 😢.')</script>";
+        }
+      }
 
       // Check if user is an admin
       if(isset($_SESSION["admin"]) && $_SESSION["admin"] === "true") {
         $this->view("templates/header", $data);
         $this->view("templates/navbarAdmin");
+        $this->view("admin/index", $data);
         $this->view("templates/footer");
       } else {
         header("Location: ". BASEURL . "/auth/admin");
