@@ -3,64 +3,65 @@
   <!-- Add -->
   <div class="mb-4" style="float: right;">
     <button type="button" class="btn d-flex justify-content-center gap-2" data-bs-toggle="modal" data-bs-target="#add" style="background-color: #29978C; color: #FFF;">
-      <!-- Icon -->
       <div><i class="fa fa-plus"></i></div>
-      <!-- Text -->
       <div class="fw-semibold">Add Product</div>
     </button>
   </div>
-  <!-- Table -->
-  <table class="table table-hover">
-    <!-- Column Name -->
-    <thead class="table-light">
-      <tr style="text-align: center; line-height: 30px">
-        <th>No</th>
-        <th>Image</th>
-        <th>Name</th>
-        <th>Category</th>
-        <th>Supplier</th>
-        <th>Stock</th>
-        <th>Price</th>
-        <th>Action</th>
-      </tr>
-    </thead>
-    <!-- Column Data -->
-    <tbody>
-      <?php foreach($data["product"] as $index => $product) : ?>
-        <tr>
-          <!-- No -->
-          <td style="text-align: center"><?= ++$index ?></td>
-          <!-- Image -->
-          <td style="text-align: center">
-            <img src="<?= BASEURL ?>/img/products/<?= $product["image"] ?>.jpg" width="100"/>
-          </td>
-          <!-- Name -->
-          <td style="text-align: center"><?= $product["name"] ?></td>
-          <!-- Category -->
-          <td style="text-align: center"><?= $product["category"] ?></td>
-          <!-- Supplier -->
-          <td style="text-align: center"><?= $product["supplier_name"] ?></td>
-          <!-- Stock -->
-          <td style="text-align: center"><?= $product["stock"] ?></td>
-          <!-- Price -->
-          <td style="text-align: center">Rp<?= $product["price"] ?></td>
-          <!-- Action -->
-          <td>
-            <div class="d-flex justify-content-center gap-2">
-              <!-- Update -->
-              <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#update" style="background-color: #29978C; color: #FFF;" data-id="<?= $product["id"]?>" data-image="<?= $product["image"]?>" data-name="<?= $product["name"]?>" data-description="<?= $product["description"]?>" data-category="<?= $product["category"]?>" data-supplier="<?= $product["supplier_id"]?>" data-stock="<?= $product["stock"]?>" data-price="<?= $product["price"]?>">
-                <i class="fa fa-refresh"></i>
-              </button>
-              <!-- Delete -->
-              <a href="<?= BASEURL ?>/admin/product/delete/<?= $product["id"] ?>" class="btn" style="background-color: #DC3545; color: #FFF;">
-                <i class="fa fa-trash"></i>
-              </a>
-            </div>
-          </td>
+  <!-- Card -->
+  <div class="w-100 px-1" style="overflow-x: auto; white-space: nowrap">
+    <!-- Table -->
+    <table class="table table-hover">
+      <!-- Column Name -->
+      <thead class="table-light">
+        <tr class="text-center">
+          <th>No</th>
+          <th>Image</th>
+          <th>Name</th>
+          <th>Category</th>
+          <th>Supplier</th>
+          <th>Stock</th>
+          <th>Price</th>
+          <th>Action</th>
         </tr>
-      <?php endforeach ?>
-    </tbody>
-  </table>
+      </thead>
+      <!-- Column Data -->
+      <tbody>
+        <?php foreach($data["product"] as $index => $product) : ?>
+          <tr class="text-center">
+            <!-- No -->
+            <td style="vertical-align: middle;"><?= ++$index ?></td>
+            <!-- Image -->
+            <td class="p-3">
+              <img src="<?= BASEURL ?>/img/products/<?= $product["image"] ?>.jpg" width="100"/>
+            </td>
+            <!-- Name -->
+            <td style="vertical-align: middle;"><?= $product["name"] ?></td>
+            <!-- Category -->
+            <td style="vertical-align: middle;"><?= $product["category"] ?></td>
+            <!-- Supplier -->
+            <td style="vertical-align: middle;"><?= $product["supplier_name"] ?></td>
+            <!-- Stock -->
+            <td style="vertical-align: middle;"><?= $product["stock"] ?></td>
+            <!-- Price -->
+            <td style="vertical-align: middle;">Rp<?= $product["price"] ?></td>
+            <!-- Action -->
+            <td style="vertical-align: middle;"> 
+              <div class="d-flex justify-content-center gap-2">
+                <!-- Update -->
+                <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#update" style="background-color: #29978C; color: #FFF;" data-id="<?= $product["id"]?>" data-image="<?= $product["image"]?>" data-name="<?= $product["name"]?>" data-description="<?= $product["description"]?>" data-category="<?= $product["category"]?>" data-supplier="<?= $product["supplier_id"]?>" data-stock="<?= $product["stock"]?>" data-price="<?= $product["price"]?>">
+                  <i class="fa fa-refresh"></i>
+                </button>
+                <!-- Delete -->
+                <a href="<?= BASEURL ?>/admin/product/delete/<?= $product["id"] ?>" class="btn" style="background-color: #DC3545; color: #FFF;">
+                  <i class="fa fa-trash"></i>
+                </a>
+              </div>
+            </td>
+          </tr>
+        <?php endforeach ?>
+      </tbody>
+    </table>
+  </div>
 </div>
 
 <!-- Add Modal -->
@@ -69,7 +70,9 @@
     <div class="modal-content">
       <!-- Header -->
       <div class="modal-header">
+        <!-- Title -->
         <h1 class="modal-title fs-5 fw-bold">Add Product</h1>
+        <!-- Close -->
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <!-- Form -->
@@ -134,7 +137,9 @@
     <div class="modal-content">
       <!-- Header -->
       <div class="modal-header">
+        <!-- Title -->
         <h1 class="modal-title fs-5 fw-bold">Update Product</h1>
+        <!-- Close -->
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <!-- Form -->
@@ -196,7 +201,10 @@
   </div>
 </div>
 
+<!-- Jquery -->
 <script src="<?= BASEURL ?>/js/jquery-3.7.1.min.js"></script>
+
+<!-- Update (AJAX) -->
 <script>
   $("#update").on("show.bs.modal", function (event) {
     var button      = $(event.relatedTarget)
@@ -222,4 +230,3 @@
     modal.find('.modal-body #image_name').val(image)
   })
 </script>
-

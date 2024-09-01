@@ -35,6 +35,7 @@
         $this->view("templates/header", $data);
         $this->view("templates/navbarAdmin");
         $this->view("admin/index", $data);
+        $this->view("templates/logout");
         $this->view("templates/footer");
       } else {
         header("Location: ". BASEURL . "/auth/admin");
@@ -52,6 +53,7 @@
         $this->view("templates/header", $data);
         $this->view("templates/navbarAdmin");
         $this->view("admin/customer", $data);
+        $this->view("templates/logout");
         $this->view("templates/footer");
       } else {
         // Redirect to admin login if not an admin
@@ -103,6 +105,7 @@
         $this->view("templates/header", $data);
         $this->view("templates/navbarAdmin");
         $this->view("admin/supplier", $data);
+        $this->view("templates/logout");
         $this->view("templates/footer");
       } else {
         // Redirect to admin login if not an admin
@@ -152,6 +155,7 @@
         $this->view("templates/header", $data);
         $this->view("templates/navbarAdmin");
         $this->view("admin/product", $data);
+        $this->view("templates/logout");
         $this->view("templates/footer");
       } else {
         // Redirect to admin login if not an admin
@@ -253,6 +257,7 @@
         $this->view("templates/header", $data);
         $this->view("templates/navbarAdmin");
         $this->view("admin/feedback", $data);
+        $this->view("templates/logout");
         $this->view("templates/footer");
       } else {
         // Redirect to admin login if not an admin
@@ -286,6 +291,7 @@
         $this->view("templates/header", $data);
         $this->view("templates/navbarAdmin");
         $this->view("admin/history", $data);
+        $this->view("templates/logout");
         $this->view("templates/footer");
       } else {
         // Redirect to admin login if not an admin

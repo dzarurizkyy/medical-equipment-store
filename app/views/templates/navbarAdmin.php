@@ -6,12 +6,17 @@
     <a class="navbar-brand text-light" href="<?= BASEURL ?>/admin">
       <img src="<?= BASEURL ?>/img/assets/Navbar.png" width="38"/>
     </a>
+    <!-- Toggler -->
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
+      <div class="d-flex align-items-center gap-3">
+        <!-- History -->
+        <div><a href="<?= BASEURL ?>/admin/history"><i class="fa fa-history text-light fs-5"></i></a></div>
+        <!-- List -->
+        <span class="navbar-toggler-icon"></span>
+      </div>
     </button>
     <!-- Menu -->
     <div class="collapse navbar-collapse" id="navbarNav">
-      <!-- Left Content -->
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <!-- Home -->
         <li class="nav-item">
@@ -29,16 +34,15 @@
         <li class="nav-item ">
           <a class="nav-link fw-semibold text-light" href="<?= BASEURL ?>/admin/product">Product</a>
         </li>
-         <!--Feedback -->
+        <!-- Feedback -->
          <li class="nav-item ">
           <a class="nav-link fw-semibold text-light" href="<?= BASEURL ?>/admin/feedback">Feedback</a>
         </li>
-      </ul>
-      <!-- Right Content -->
-      <div>
         <!-- History -->
-        <a href="<?= BASEURL ?>/admin/history"><i class="fa fa-history text-light fs-5"></i></a>
-      </div>
+        <li class="nav-item d-md-block d-none">
+          <a class="nav-link fw-semibold text-light" href="<?= BASEURL ?>/admin/history">History</a>
+        </li>
+      </ul>
     </div>
   </div>
 </nav>

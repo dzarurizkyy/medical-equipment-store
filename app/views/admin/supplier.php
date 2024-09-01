@@ -1,88 +1,96 @@
 <!-- Container -->
 <div class="container table-responsive my-3">
-  <!-- Add Data -->
+  <!-- Add -->
   <div class="mb-4" style="float: right">
     <button type="button" class="btn d-flex justify-content-center gap-2" data-bs-toggle="modal" data-bs-target="#add" style="background-color: #29978C; color: #FFF">
       <div><i class="fa fa-plus"></i></div>
       <div class="fw-semibold">Add Supplier</div>
     </button>
   </div>
-  <!-- Table -->
-  <table class="table table-hover">
-    <!-- Column Name -->
-    <thead class="table-light">
-      <tr style="text-align: center; line-height: 30px;">
-        <th>No</th>
-        <th>Name</th>
-        <th>Email</th>
-        <th>Phone Number</th>
-        <th>City</th>
-        <th>Address</th>
-        <th>Action</th>
-      </tr>
-    </thead>
-    <!-- Column Data -->
-    <tbody>
-    <?php foreach($data["supplier"] as $index => $supplier) : ?>
-      <tr>
-        <!-- No -->
-        <td style="text-align: center"><?= ++$index ?></td>
-        <!-- Name -->
-        <td><?= $supplier["name"] ?></td>
-        <!-- Email -->
-        <td><?= $supplier["email"] ?></td>
-        <!-- Phone Number -->
-        <td style="text-align: center"><?= $supplier["phone_number"] ?></td>
-        <!-- City -->
-        <td><?= $supplier["city"] ?></td>
-        <!-- Address -->
-        <td><?= $supplier["address"] ?></td>
-        <!-- Action -->
-        <td class="d-flex gap-2" style="text-align: center;">
-          <!-- Update -->
-          <button type="button" class="btn" style="background-color: #29978C; color: #FFF;" data-bs-toggle="modal" data-bs-target="#update" data-id="<?= $supplier["id"]?>" data-name="<?= $supplier["name"]?>" data-email="<?= $supplier["email"]?>" data-phone="<?= $supplier["phone_number"]?>" data-city="<?= $supplier["city"]?>" data-address="<?= $supplier["address"]?>">
-            <i class="fa fa-refresh"></i>
-          </button>
-          <!-- Delete -->
-          <a href="<?= BASEURL ?>/admin/supplier/delete/<?= $supplier["id"] ?>" class="btn" style="background-color: #DC3545; color: #FFF;">
-            <i class="fa fa-trash"></i>
-          </a>
-        </td>
-      </tr>
-    <?php endforeach ?>
-    </tbody>
-  </table>
+  <!-- Card -->
+  <div class="w-100 px-1" style="overflow-x: auto; white-space: nowrap">
+    <!-- Table -->
+    <table class="table table-hover">
+      <!-- Column Name -->
+      <thead class="table-light">
+        <tr class="text-center">
+          <th>No</th>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Phone Number</th>
+          <th>City</th>
+          <th>Address</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <!-- Column Data -->
+      <tbody>
+        <?php foreach($data["supplier"] as $index => $supplier) : ?>
+          <tr>
+            <!-- No -->
+            <td class="text-center" style="vertical-align: middle;"><?= ++$index ?></td>
+            <!-- Name -->
+            <td style="vertical-align: middle;"><?= $supplier["name"] ?></td>
+            <!-- Email -->
+            <td style="vertical-align: middle;"><?= $supplier["email"] ?></td>
+            <!-- Phone Number -->
+            <td class="text-center" style="vertical-align: middle;"><?= $supplier["phone_number"] ?></td>
+            <!-- City -->
+            <td style="vertical-align: middle;"><?= $supplier["city"] ?></td>
+            <!-- Address -->
+            <td style="vertical-align: middle;"><?= $supplier["address"] ?></td>
+            <!-- Action -->
+            <td class="d-flex gap-2">
+              <!-- Update -->
+              <button type="button" class="btn" style="background-color: #29978C; color: #FFF;" data-bs-toggle="modal" data-bs-target="#update" data-id="<?= $supplier["id"]?>" data-name="<?= $supplier["name"]?>" data-email="<?= $supplier["email"]?>" data-phone="<?= $supplier["phone_number"]?>" data-city="<?= $supplier["city"]?>" data-address="<?= $supplier["address"]?>">
+                <i class="fa fa-refresh"></i>
+              </button>
+              <!-- Delete -->
+              <a href="<?= BASEURL ?>/admin/supplier/delete/<?= $supplier["id"] ?>" class="btn" style="background-color: #DC3545; color: #FFF;">
+                <i class="fa fa-trash"></i>
+              </a>
+            </td>
+          </tr>
+        <?php endforeach ?>
+      </tbody>
+    </table>
+  </div>
 </div>
 
 <!-- Add Modal -->
 <div class="modal fade" tabindex="-1" id="add">
   <div class="modal-dialog">
     <div class="modal-content">
+      <!-- Header -->
       <div class="modal-header">
-        <h4 class="modal-title">Add Supplier</h5>
+        <!-- Title -->
+        <h4 class="modal-title fw-bold">Add Supplier</h5>
+        <!-- Close -->
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
+      <!-- Form -->
       <form action="<?= BASEURL ?>/admin/supplier/add" method="post">
+        <!-- Body -->
         <div class="modal-body">
           <!-- Name -->
           <div class="mb-3">
             <label for="name" class="form-label fw-semibold">Name</label>
-            <input type="text" class="form-control" id="name" name="name" placeholder="Enter name" required>
+            <input type="text" class="form-control" id="name" name="name" placeholder="Enter name" required />
           </div>
           <!-- Email -->
           <div class="mb-3">
             <label for="email" class="form-label fw-semibold">Email</label>
-            <input type="email" class="form-control" id="email" name="email" placeholder="Enter email" required>
+            <input type="email" class="form-control" id="email" name="email" placeholder="Enter email" required />
           </div>
           <!-- Phone Number -->
           <div class="mb-3">
             <label for="phone" class="form-label fw-semibold">Phone Number</label>
-            <input type="number" class="form-control" id="phone" name="phone" placeholder="Enter phone number" required>
+            <input type="number" class="form-control" id="phone" name="phone" placeholder="Enter phone number" required />
           </div>
           <!-- City -->
           <div class="mb-3">
             <label for="city" class="form-label fw-semibold">City</label>
-            <select class="form-select" id="city" name="city" required >
+            <select class="form-select" id="city" name="city" required>
               <option value="Jakarta">Jakarta</option>
               <option value="Yogyakarta">Yogyakarta</option>
               <option value="Surabaya">Surabaya</option>
@@ -95,8 +103,11 @@
             <input type="text" class="form-control" id="address" name="address" placeholder="Enter address" required>
           </div>
         </div>
+        <!-- Footer -->
         <div class="modal-footer">
+          <!-- Close -->
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <!-- Submit -->
           <button type="submit" class="btn" style="background-color: #29978C; color: #FFF;">Submit</button>
         </div>
       </form>
@@ -108,11 +119,16 @@
 <div class="modal fade" tabindex="-1" id="update">
   <div class="modal-dialog">
     <div class="modal-content">
+      <!-- Header -->
       <div class="modal-header">
+        <!-- Title -->
         <h4 class="modal-title">Update Supplier</h5>
+        <!-- Close -->
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
+      <!-- Form -->
       <form action="<?= BASEURL ?>/admin/supplier/update" method="post">
+        <!-- Body -->
         <div class="modal-body">
           <!-- ID -->
           <input type="hidden" class="form-control" id="id" name="id" />
@@ -156,7 +172,10 @@
   </div>
 </div>
 
+<!-- Jquery -->
 <script src="<?= BASEURL ?>/js/jquery-3.7.1.min.js"></script>
+
+<!-- Update (AJAX) -->
 <script>
   $("#update").on("show.bs.modal", function (event) {
     var button      = $(event.relatedTarget)

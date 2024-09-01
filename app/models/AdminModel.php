@@ -262,7 +262,7 @@
     
     // To update order status
     public function updateStatusOrder($id, $status) {
-      $this->db->query("UPDATE orders SET status=:status WHERE user_id=:user_id");
+      $this->db->query("UPDATE orders SET status=:status WHERE user_id=:user_id AND status = 'konfirmasi'");
       $this->db->bind("user_id", $id);
       $this->db->bind("status", $status);
       $this->db->execute();
@@ -301,6 +301,7 @@
          FROM orders
          INNER JOIN product ON orders.product_id = product.id
          WHERE orders.user_id = :id AND status != 'keranjang' AND status != 'konfirmasi'
+         ORDER BY created_at DESC
       ");
 
       $this->db->bind("id", $id);
