@@ -268,5 +268,44 @@
       $this->db->execute();
       return $this->db->rowCount();
     }
+
+    // To get all history orders
+    public function getHistoryOrder() {
+      $this->db->query(
+        "SELECT 
+          customer.id, 
+          customer.username as customer, 
+          customer.city, 
+          customer.address, 
+          MAX(orders.created_at) as created_at
+        FROM orders 
+        INNER JOIN customer ON orders.user_id = customer.id
+        WHERE status != 'konfirmasi' AND status != 'keranjang'
+        GROUP BY customer.id
+      ");
+      
+      $this->db->execute();
+      return $this->db->resultSet();
+    }
+    
+    // To get detail history order
+    public function getDetailHistoryOrder($id) {
+      $this->db->query(
+        "SELECT
+          product.name as product,
+          orders.quantity,
+          orders.total,
+          orders.payment,
+          orders.status,
+          orders.created_at
+         FROM orders
+         INNER JOIN product ON orders.product_id = product.id
+         WHERE orders.user_id = :id AND status != 'keranjang' AND status != 'konfirmasi'
+      ");
+
+      $this->db->bind("id", $id);
+      $this->db->execute();
+      return $this->db->resultSet();
+    }
   }
 ?>

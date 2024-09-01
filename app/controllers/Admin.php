@@ -270,5 +270,28 @@
         }
       }
     }
+
+    // Display history order page
+    public function history($param = "", $value = 8) {
+      $data["title"] = "History";
+      $data["history"] = $this->model("AdminModel")->getHistoryOrder();
+
+      // Handle display history order details
+      if($param === "view") {
+        $data["detail"] = $this->model("AdminModel")->getDetailHistoryOrder($value);
+      }
+      
+      // Check if user is an admin
+      if(isset($_SESSION["admin"]) && $_SESSION["admin"] === "true") {
+        $this->view("templates/header", $data);
+        $this->view("templates/navbarAdmin");
+        $this->view("admin/history", $data);
+        $this->view("templates/footer");
+      } else {
+        // Redirect to admin login if not an admin
+        header("Location: ". BASEURL . "/auth/admin");
+        exit;
+      }
+    }
   }
 ?>

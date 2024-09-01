@@ -87,7 +87,7 @@
               <i class="fa fa-close"></i>
             </a>
           </div>
-          <hr class="pb-2">
+          <hr class="pb-2" />
           <!-- Body -->
           <div style="overflow-x: auto;">
             <!-- Table -->
