@@ -40,4 +40,53 @@ This is an e-commerce website designed for selling medical equipment online. The
     ```
 
 ## Entity Relationship Diagram (ERD)
-  
+  <p align="center">
+    <img src="https://github.com/Dzaru-Portfolio/bnsp-project/blob/master/public/img/Assets/ERD.png">
+  </p>
+
+## Project Structure
+   
+   ```
+   project-root/
+    ├── app/              # Contains core logic of MVC application
+    |   ├── config/       # Configuration files (e.g., database settings)
+    │   ├── controllers/  # Controllers that handle user requests and business logic
+    │   ├── core/         # Core classes (e.g., base controller and model classes)
+    │   ├── helpers/      # Helper functions for common tasks
+    │   ├── models/       # Models for interacting with database
+    │   ├── packages/     # Third-party packages (e.g., payment gateway integration)
+    │   └── views/        # Views (HTML templates) for displaying content to user
+    │
+    ├── public/           # Publicly accessible files
+    │   ├── css/          # Stylesheets for website
+    │   ├── js/           # JavaScript files for interactivity
+    │   └── img/          # Images used in website
+    │
+    └── index.php         # The main entry point for  application
+   ```
+   
+## Feature
+   - <h3>Visitor</h3>
+     
+     - Visit Site
+     - Create New Account
+     - Login
+       
+   - <h3>Customer</h3>
+     
+     - Browse Products by Category
+     - Add/Remove Product from Cart
+     - Payment (Cash/Debit)
+     - Give Feedback
+     - Logout
+
+  - <h3>Admin</h3>
+     
+     - Manage Customer Database
+     - Add/Remove/Update Product
+     - Add/Remove/Update Supplier
+     - View/Delete Order Feedback
+     - Shipping Order
+     - Logout
+
+## Screenshots
