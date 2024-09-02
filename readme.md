@@ -62,7 +62,7 @@ This is an e-commerce website designed for selling medical equipment online. The
     │   ├── js/           # JavaScript files for interactivity
     │   └── img/          # Images used in website
     │
-    └── index.php         # The main entry point for  application
+    └── index.php         # The main entry point for application
    ```
    
 ## Features 🔍
