@@ -20,8 +20,16 @@
         <li class="nav-item ">
           <a class="nav-link fw-semibold text-light" href="<?= BASEURL ?>/home/status">Status</a>
         </li>
+        <!-- Profile -->
+        <li class="nav-item d-lg-none d-block">
+          <a class="nav-link fw-semibold text-light" href="<?= BASEURL ?>/home/profile">Profile</a>
+        </li>
+        <!-- Cart -->
+        <li class="nav-item d-lg-none d-block">
+          <a class="nav-link fw-semibold text-light" href="<?= BASEURL ?>/home/cart">Cart</a>
+        </li>
       </ul>
-      <div class="d-flex flex-row gap-3 align-items-center">
+      <div class="d-lg-flex d-none flex-row gap-3 align-items-center">
         <!-- Person -->
         <a href="<?= BASEURL ?>/home/profile" class="mt-2">
           <!-- Icon -->

@@ -503,7 +503,7 @@
     }
     
     // To submit feedback for an order
-    public function submitFeedback() {
+    public function feedback() {
       if(isset($_POST)) {
         // Check if rating is within range 1 to 5
         if($_POST["rating"] > 5 || $_POST["rating"] < 1) {

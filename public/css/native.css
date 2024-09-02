@@ -7,10 +7,29 @@
   width: 30%;
 }
 
+.registration-card {
+  background-image: url('../img/assets/Background.png'); 
+  background-repeat: no-repeat;  
+  background-size: cover; 
+  background-attachment: fixed;
+  height: 100%;
+}
+
+@media screen and (min-width:1280px) {
+  .registration-card {
+    height: 100vh;
+  }
+}
 
 @media screen and (max-width: 1200px) {
   .filter-card {
     display: none;
+  }
+}
+
+@media screen and (max-width: 1180px) {
+  .registration-card {
+    height: 100vh;
   }
 }
 

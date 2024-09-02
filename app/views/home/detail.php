@@ -2,7 +2,7 @@
 <div class="container d-flex flex-column gap-4">
   <!-- Title -->
   <div class="d-flex flex-row gap-2 align-items-center">
-    <!-- Back to homepage -->
+    <!-- Homepage -->
     <a href="<?= BASEURL ?>/home" class="text-decoration-none text-black pe-1">
       <i class="	fa fa-arrow-left" style="font-size: 18px;"></i>
     </a>
@@ -12,11 +12,11 @@
     </div>
   </div>
   <!-- Card -->
-  <div class="card mb-3" style="max-width: 38rem;">
+  <div class="card mb-3" style="max-width: 40rem;">
     <div class="row g-0">
       <!-- Image -->
       <div class="col-md-4 p-3">
-        <img src="<?= BASEURL ?>/img/products/<?= $data["product"]["image"]?>.jpg" class="img-fluid rounded-start" alt="...">
+        <img src="<?= BASEURL ?>/img/products/<?= $data["product"]["image"]?>.jpg" class="img-fluid rounded-start" alt="..." />
       </div>
       <!-- Content -->
       <div class="col-md-8 d-flex align-items-center">
@@ -32,12 +32,13 @@
           </div>
           <hr />
           <!-- Actions -->
-          <div class="card-text d-flex justify-content-between align-items-center ">
+          <div class="card-text d-flex justify-content-between align-items-center pt-2">
             <!-- Supplier -->
-            <div>
-              <small class="text-body-secondary">Supplier : <?= $data["product"]["supplier"]?></small>
+            <div class="d-flex gap-2 flex-wrap text-body-secondary small pe-2">
+              <div>Supplier :</div>
+              <div><?= $data["product"]["supplier"]?></div>
             </div>
-            <div>
+            <div class="d-flex gap-2">
               <!-- Price -->
               <div class="badge rounded-pill text-bg-danger">Price : Rp<?= $data["product"]["price"]?></div>
               <!-- Stock -->

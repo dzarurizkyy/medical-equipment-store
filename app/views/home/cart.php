@@ -21,13 +21,13 @@
               <i class="fa fa-shopping-bag" style="color: #29978C; font-size: 20px;"></i>
             </div>
             <!-- Date -->
-            <div>
-              <div class="fw-bold" style="font-size: 12px;">Shopping</div>
+            <div class="d-flex flex-wrap">
+              <div class="fw-bold w-100" style="font-size: 12px;">Shopping</div>
               <div style="font-size: 11px;"><?= $product["created_at"]?></div>
             </div>
           </div>
           <!-- Right -->
-          <div>
+          <div class="d-flex flex-wrap justify-content-end gap-1">
             <!-- Category -->
             <div class="badge text-decoration-none px-2" style="background-color: #d7f4f1; color: #29978C">
               <?= $product["category"] ?>

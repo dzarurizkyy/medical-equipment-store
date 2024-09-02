@@ -1,7 +1,7 @@
 <!-- Container -->
-<div style="background-image: url('<?= BASEURL ?>/img/assets/Background.png'); background-repeat: no-repeat;  background-size: cover; background-attachment: fixed;">
+<div class="d-flex align-items-center registration-card">
   <!-- Card -->
-  <div class="container d-flex justify-content-center p-4">
+  <div class="container d-flex justify-content-center align-items-center p-4 h-50">
     <!-- Row -->
     <div class="row col-lg-6 col-12">
       <div class="card text-center p-4 shadow rounded-4 bg-light">

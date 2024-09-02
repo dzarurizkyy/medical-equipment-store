@@ -21,7 +21,7 @@
       <!-- Link -->
       <div class="d-flex gap-2 mt-2 pt-2">
         <!-- Phone Number -->
-        <a href="https:/wa.me/62<?= $phone_number ?>" class="d-flex justify-content-center align-items-center text-decoration-none" style="border-radius: 20px; width: 30px; height: 30px; background-color: #29978C;">
+        <a href="https:/wa.me/<?= $phone_number ?>" class="d-flex justify-content-center align-items-center text-decoration-none" style="border-radius: 20px; width: 30px; height: 30px; background-color: #29978C;">
           <i class="fa fa-phone" style="color: #FFF"></i>
         </a>
         <!-- Email -->

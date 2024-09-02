@@ -67,7 +67,23 @@
 
     // To get details product
     public function detail($id) {
-      $this->db->query("SELECT * FROM product WHERE id=:id");
+      $this->db->query(
+        "SELECT 
+            product.id, 
+            product.image, 
+            product.name,
+            product.description,
+            product.category,
+            supplier.name as supplier,
+            product.stock,
+            product.price,
+            product.created_at,
+            product.updated_at
+          FROM product 
+          INNER JOIN supplier ON product.supplier_id = supplier.id
+          WHERE product.id=:id;
+        ");
+        
       $this->db->bind("id", $id);
       return $this->db->single();
     }
@@ -113,12 +129,13 @@
                 product.image, 
                 product.name,
                 product.category,
-                product.supplier, 
+                supplier.name as supplier, 
                 orders.quantity, 
                 orders.total, 
                 orders.created_at 
         FROM orders 
-        INNER JOIN product on orders.product_id=product.id 
+        INNER JOIN product on orders.product_id=product.id
+        INNER JOIN supplier ON product.supplier_id=supplier.id 
         WHERE orders.user_id=:user_id AND orders.status = 'keranjang';"
       );
 
@@ -167,13 +184,14 @@
                 product.image,
                 product.name,
                 product.category,
-                product.supplier,
+                supplier.name as supplier,
                 orders.quantity,
                 orders.total,
                 orders.status,
                 orders.created_at
         FROM orders
         INNER JOIN product on orders.product_id=product.id
+        INNER JOIN supplier on product.supplier_id=supplier.id
         WHERE orders.user_id=:user_id AND orders.status != 'keranjang' ORDER BY created_at DESC"
       );
 

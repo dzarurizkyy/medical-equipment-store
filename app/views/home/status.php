@@ -13,19 +13,19 @@
       <!-- Header -->
       <div class="card-header d-flex justify-content-between align-items-center">
         <!-- Left -->
-        <div class="d-flex align-items-center gap-3">
+        <div class="d-flex align-items-center gap-3 me-1">
           <!-- Icon -->
           <div>
             <i class="fa fa-shopping-bag" style="color: #29978C; font-size: 20px;"></i>
           </div>
           <!-- Date -->
-          <div>
-            <div class="fw-bold" style="font-size: 12px;">Shopping</div>
+          <div class="d-flex flex-wrap">
+            <div class="fw-bold w-100" style="font-size: 12px;">Shopping</div>
             <div style="font-size: 11px;"><?= $product["created_at"]?></div>
           </div>
         </div>
         <!-- Right -->
-        <div>
+        <div class="d-flex flex-wrap gap-2 justify-content-end">
           <!-- Category -->
           <div class="badge text-decoration-none px-2" style="background-color: #d7f4f1; color: #29978C">
             <?= $product["category"] ?>
@@ -126,13 +126,16 @@
   </div>
 </div>
 
+<!-- Jquery -->
+<script src="<?= BASEURL ?>/js/jquery-3.7.1.min.js"></script>
+
 <script>
   // This script listens for the 'show.bs.modal' event on the '#feedback' modal.
   $('#feedback').on('show.bs.modal', function (event) {
     var button = $(event.relatedTarget) 
-    var order_id = button.data('id') 
+    var orderId = button.data('id') 
     var modal = $(this)
     // Set the value of the '#order_id' input field to the order_id
-    modal.find('.modal-body #order_id').val(order_id)
+    modal.find('.modal-body #order_id').val(orderId)
   })
 </script>
