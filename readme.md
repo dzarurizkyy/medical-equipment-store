@@ -1,7 +1,7 @@
 # Medical Equipment Store 💊
 This is an e-commerce website designed for selling medical equipment online. The website is built using PHP follows MVC (Model-View-Controller) architecture.
 
-## Getting Started
+## Getting Started 🚀
 
 - <h3>Clone this repository</h3>
   
@@ -39,12 +39,12 @@ This is an e-commerce website designed for selling medical equipment online. The
     http://localhost/bnsp-project/public
     ```
 
-## Entity Relationship Diagram (ERD)
+## Entity Relationship Diagram (ERD) 📊
   <p align="center">
-    <img src="https://github.com/Dzaru-Portfolio/bnsp-project/blob/master/public/img/Assets/ERD.png">
+    <img src="https://github.com/Dzaru-Portfolio/bnsp-project/blob/master/public/img/documentation/ERD.png">
   </p>
 
-## Project Structure
+## Project Structure 🗂️
    
    ```
    project-root/
@@ -65,7 +65,7 @@ This is an e-commerce website designed for selling medical equipment online. The
     └── index.php         # The main entry point for  application
    ```
    
-## Feature
+## Features 🔍
    - <h3>Visitor</h3>
      
      - Visit Site
@@ -89,4 +89,32 @@ This is an e-commerce website designed for selling medical equipment online. The
      - Shipping Order
      - Logout
 
-## Screenshots
+## Screenshots 📸
+   - <h3>Visitor</h3>
+
+     - Registration page
+       <p><img src="https://github.com/Dzaru-Portfolio/bnsp-project/blob/master/public/img/documentation/Visitor-2.png" width="700"></p>
+     - Login page
+       <p><img src="https://github.com/Dzaru-Portfolio/bnsp-project/blob/master/public/img/documentation/Visitor-1.png" width="700"></p>
+        
+   - <h3>Customer</h3>
+
+     - Home page
+       <p><img src="https://github.com/Dzaru-Portfolio/bnsp-project/blob/master/public/img/documentation/Customer-1.png" width="700"></p>
+     - Cart page
+       <p><img src="https://github.com/Dzaru-Portfolio/bnsp-project/blob/master/public/img/documentation/Customer-2.png" width="700"></p>
+     - Status page
+       <p><img src="https://github.com/Dzaru-Portfolio/bnsp-project/blob/master/public/img/documentation/Customer-3.png" width="700"></p>
+       
+   - <h3>Admin</h3>
+     
+      - Product management page
+        <p><img src="https://github.com/Dzaru-Portfolio/bnsp-project/blob/master/public/img/documentation/Admin-1.png" width="700"></p>
+      - Customer management page
+        <p><img src="https://github.com/Dzaru-Portfolio/bnsp-project/blob/master/public/img/documentation/Admin-2.png" width="700"></p>
+      - Reset password page
+        <p><img src="https://github.com/Dzaru-Portfolio/bnsp-project/blob/master/public/img/documentation/Admin-3.png" width="700"></p>
+
+## Contributor  🤝
+   - [Dzaru Rizky Fathan Fortuna](https://www.linkedin.com/in/dzarurizky/)
+       
