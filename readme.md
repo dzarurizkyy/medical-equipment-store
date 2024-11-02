@@ -93,27 +93,27 @@ This is an e-commerce website designed for selling medical equipment online. The
    - <h3>Visitor</h3>
 
      - Registration page
-       <p><img src="https://github.com/Dzaru-Portfolio/bnsp-project/blob/master/public/img/documentation/Visitor-2.png" width="700"></p>
+       <p><img src="https://github.com/dzarurizkyy/medical-equipment-web/blob/master/public/img/documentation/Visitor-2.png" width="700"></p>
      - Login page
-       <p><img src="https://github.com/Dzaru-Portfolio/bnsp-project/blob/master/public/img/documentation/Visitor-1.png" width="700"></p>
+       <p><img src="https://github.com/dzarurizkyy/medical-equipment-web/blob/master/public/img/documentation/Visitor-1.png" width="700"></p>
         
    - <h3>Customer</h3>
 
      - Home page
-       <p><img src="https://github.com/Dzaru-Portfolio/bnsp-project/blob/master/public/img/documentation/Customer-1.png" width="700"></p>
+       <p><img src="https://github.com/dzarurizkyy/medical-equipment-web/blob/master/public/img/documentation/Customer-1.png" width="700"></p>
      - Cart page
-       <p><img src="https://github.com/Dzaru-Portfolio/bnsp-project/blob/master/public/img/documentation/Customer-2.png" width="700"></p>
+       <p><img src="https://github.com/dzarurizkyy/medical-equipment-web/blob/master/public/img/documentation/Customer-2.png" width="700"></p>
      - Status page
-       <p><img src="https://github.com/Dzaru-Portfolio/bnsp-project/blob/master/public/img/documentation/Customer-3.png" width="700"></p>
+       <p><img src="https://github.com/dzarurizkyy/medical-equipment-web/blob/master/public/img/documentation/Customer-3.png" width="700"></p>
        
    - <h3>Admin</h3>
      
       - Product management page
-        <p><img src="https://github.com/Dzaru-Portfolio/bnsp-project/blob/master/public/img/documentation/Admin-1.png" width="700"></p>
+        <p><img src="https://github.com/dzarurizkyy/medical-equipment-web/blob/master/public/img/documentation/Admin-1.png" width="700"></p>
       - Customer management page
-        <p><img src="https://github.com/Dzaru-Portfolio/bnsp-project/blob/master/public/img/documentation/Admin-2.png" width="700"></p>
+        <p><img src="https://github.com/dzarurizkyy/medical-equipment-web/blob/master/public/img/documentation/Admin-2.png" width="700"></p>
       - Reset password page
-        <p><img src="https://github.com/Dzaru-Portfolio/bnsp-project/blob/master/public/img/documentation/Admin-3.png" width="700"></p>
+        <p><img src="https://github.com/dzarurizkyy/medical-equipment-web/blob/master/public/img/documentation/Admin-3.png" width="700"></p>
 
 ## Contributor  🤝
    - [Dzaru Rizky Fathan Fortuna](https://www.linkedin.com/in/dzarurizky/)
