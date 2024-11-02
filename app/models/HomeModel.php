@@ -129,6 +129,7 @@
                 product.image, 
                 product.name,
                 product.category,
+                product.price,
                 supplier.name as supplier, 
                 orders.quantity, 
                 orders.total, 

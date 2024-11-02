@@ -188,7 +188,7 @@
               "id" => $order["id"],
               "name" => $order["name"],
               "quantity" => $order["quantity"],
-              "price" => $order["total"]
+              "price" => $order["price"]
             ];
           }
   

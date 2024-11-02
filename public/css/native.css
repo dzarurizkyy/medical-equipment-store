@@ -12,12 +12,11 @@
   background-repeat: no-repeat;  
   background-size: cover; 
   background-attachment: fixed;
-  height: 100%;
 }
 
 @media screen and (min-width:1280px) {
   .registration-card {
-    height: 100vh;
+    height: 130vh;
   }
 }
 
@@ -29,7 +28,7 @@
 
 @media screen and (max-width: 1180px) {
   .registration-card {
-    height: 100vh;
+    height: 130vh;
   }
 }
 
@@ -43,6 +42,9 @@
   .product-card {
     width: 100%;
     height: 17.4% !important;
+  }
+  .registration-card {
+    height: 104vh;
   }
 }
 

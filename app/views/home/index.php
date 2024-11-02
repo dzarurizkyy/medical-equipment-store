@@ -22,6 +22,10 @@
     <div class="row">
       <!-- Product -->
       <div class="col-xl-8 col-12 d-flex flex-row flex-wrap justify-content-start gap-4">
+        <?php 
+          // $startMemory = memory_get_usage(); 
+          // $startTime = microtime(true);
+        ?>
         <?php foreach($data["products"] as $product) : ?>
           <!-- Card -->
           <div class="card p-1 product-card" style="height: <?= (isset($data["product_id"]) && (int)$data["product_id"] === $product["id"]) ? '22rem' : '18rem' ?>">
@@ -57,6 +61,13 @@
             <?php endif ?>
           </div>
         <?php endforeach ?>
+        <?php 
+            // $endMemory = memory_get_usage(); 
+            // $endTime = microtime(true);
+            
+            // $executionMemory = $endMemory - $startMemory;
+            // $executionTime   = number_format($endTime - $startTime, 10); 
+          ?>
       </div>
       <!-- Filter -->
       <div class="col-xl-4 card px-2 filter-card" style="width: 340px; border: none;">
@@ -92,3 +103,8 @@
 <div class="d-flex flex-column align-items-center pagination-product pt-2">
   <?= Home::pagination($data); ?>
 </div>
+
+<?php 
+  // echo "Memory used during the loop   : " . $executionMemory . " bytes" . "<br />"; 
+  // echo "Execution tim during the loop : " . $executionTime . " seconds" . "<br />";
+?>

@@ -62,7 +62,7 @@
             </div>
             <!-- Cancel -->
             <div>
-              <a href="<?= BASEURL ?>/home/cart/cancel/<?= $product["id"] ?>" class="btn btn-danger px-4 py-1 fw-semibold" style="font-size: 14px;">
+              <a href="<?= BASEURL ?>/home/cart/cancel/<?= $product["id"] ?>" class="btn btn-danger px-4 py-1 fw-semibold" style="font-size: 14px;" onclick="return confirm('Are you sure want to delete this product from cart?');">
                 Cancel
               </a>
             </div>

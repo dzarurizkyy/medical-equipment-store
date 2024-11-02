@@ -14,7 +14,7 @@
     <!-- Library Icon -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
     <!-- External CSS -->
-    <link rel="stylesheet" href="<?= BASEURL ?>/css/native.css?ver=1.0.0" />
+    <link rel="stylesheet" href="<?= BASEURL ?>/css/native.css?ver=1.0.1" />
     <!-- Jquery -->
     <script src="<?= BASEURL ?>/js/jquery-3.7.1.min.js" async></script>
     <!-- JS Midtrans -->
