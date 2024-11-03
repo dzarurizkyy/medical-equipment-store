@@ -1,7 +1,7 @@
 <?php  
   class App {
     // Default variables
-    private $controller = "home",
+    private $controller = "Home",
             $method     = "index",
             $params     = []; 
 

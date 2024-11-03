@@ -28,7 +28,7 @@
         ?>
         <?php foreach($data["products"] as $product) : ?>
           <!-- Card -->
-          <div class="card p-1 product-card" style="height: <?= (isset($data["product_id"]) && (int)$data["product_id"] === $product["id"]) ? '22rem' : '18rem' ?>">
+          <div class="card p-1 product-card" style="height: <?= (isset($data["product_id"]) && (int)$data["product_id"] === $product["id"]) ? '24rem' : '21rem' ?>">
             <!-- Image -->
             <img src="<?= BASEURL ?>/img/products/<?= $product["image"]?>.jpg" class="card-img-top" />
             <!-- Actions -->
@@ -48,11 +48,11 @@
             <?php if(isset($data["product_id"]) && (int)$data["product_id"] === $product["id"] ) : ?>
               <form action="<?= BASEURL ?>/home/order/<?= $product["id"] ?>" method="post" class="row g-2" style="padding: 0 10% 0 4%;">
                 <!-- Input -->
-                <div class="col-md-9 col-11">
+                <div class="col-md-10 col-11">
                   <input type="number" class="form-control" id="quantity" name="quantity" placeholder="Quantity" />
                 </div>
                 <!-- Submit -->
-                <div class="col-md-3 col-1">
+                <div class="col-md-2 col-1">
                   <button type="submit" class="btn btn-primary mb-3" style="background-color: #e5fffa; border: 1px solid #29978C;">
                     <i class="fa fa-cart-plus" style="color: #29978C; font-size: 18px;"></i>
                   </button>
