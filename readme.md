@@ -1,4 +1,4 @@
-# Medical Equipment Store 💊
+# Medical Equipment Store 💊👨‍⚕️
 This is an e-commerce website designed for selling medical equipment online. The website is built using PHP follows MVC (Model-View-Controller) architecture.
 
 ## Getting Started 🚀
