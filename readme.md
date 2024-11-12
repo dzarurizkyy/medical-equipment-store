@@ -41,7 +41,7 @@ This is an e-commerce website designed for selling medical equipment online. The
 
 ## Entity Relationship Diagram (ERD) 📊
   <p align="center">
-    <img src="https://github.com/Dzaru-Portfolio/bnsp-project/blob/master/public/img/documentation/ERD.png">
+    <img src="https://github.com/dzarurizkyy/medical-equipment-web/blob/master/public/img/documentation/ERD.png">
   </p>
 
 ## Project Structure 🗂️
