@@ -6,7 +6,7 @@ This is an e-commerce website designed for selling medical equipment online. The
 - <h3>Clone this repository</h3>
   
   ```
-  git clone https://github.com/Dzaru-Portfolio/bnsp-project 
+  git clone https://github.com/dzarurizkyy/medical-equipment-web
   ```
   
 - <h3>Configure database</h3> 
